@@ -15,6 +15,7 @@ public class PlayState extends State{
 	private Board board;
 	private int[][] seed;
 	private int amountOfTiles;
+	private int boardHeight;
 	private float boardOffset;
 	private float touchTimer, timeSinceTouched;
 	private int boardSize;
@@ -27,7 +28,8 @@ public class PlayState extends State{
 		touchTimer = 0.5f;
 		timeSinceTouched = 0;
 		amountOfTiles = Ohhai.WIDTH / boardSize;
-		boardOffset = (Ohhai.HEIGHT - (amountOfTiles * boardSize)) / 2;
+		boardHeight = (amountOfTiles * boardSize);
+		boardOffset = (Ohhai.HEIGHT - (boardHeight)) / 2;
 		int[][] seed = {{0,1,0,2},
 					{2,1,0,0},
 					{0,0,1,0},

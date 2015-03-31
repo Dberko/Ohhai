@@ -10,6 +10,10 @@ public class Tile extends Box {
 	private TextureRegion neutral;
 	private int state; // NEUTRAL == 0, BLUE == 1, MAIZE == 2
 	private boolean starter;
+	private float totalWidth;
+	private float totalHeight;
+	private float timer;
+	private float maxTime = 0.5f;
 	
 	public Tile(float x, float y, float width, float height, int state, boolean starter) {
 		light = Ohhai.res.getAtlas("pack").findRegion("light");
@@ -19,9 +23,9 @@ public class Tile extends Box {
 		this.state = state;
 		this.x = x;
 		this.y = y;
-		this.width = width;
-		this.height = height;
-		
+		this.totalWidth = width - 15;
+		this.totalHeight = height - 15;
+		width = height = 0;
 	}
 	
 	public boolean isStarter() {
@@ -51,10 +55,27 @@ public class Tile extends Box {
 		starter = true;
 	}
 	
+	public void setTimer(float t) {
+		timer = t;
+	}
+ 	
 	public void update(float dt) {
 		if (state > 2) {
 			state = 0;
+		}
+		
+		if (width < totalWidth && height < totalHeight) {
+			timer += dt;
+			width = (timer / maxTime) * totalWidth;
+			height = (timer / maxTime) * totalHeight;
+			
+			if (width > totalWidth) width = totalWidth;
+			if (height > totalHeight) height = totalHeight;
+			
+
 		} 
+		
+		
 		
 	}
 	

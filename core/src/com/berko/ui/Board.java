@@ -40,17 +40,19 @@ public class Board {
 						
 						if (seed[row][col] == 0) {
 							board[row][col] = new Tile(col * amountOfTiles + amountOfTiles / 2,
-									row * amountOfTiles + boardOffset + amountOfTiles / 2, amountOfTiles - 6,
-										amountOfTiles - 6, 0, false);
+									row * amountOfTiles + boardOffset + amountOfTiles / 2, amountOfTiles,
+										amountOfTiles, 0, false);
 							
 						} else {	
 					
 							board[row][col] = new Tile(col * amountOfTiles + amountOfTiles / 2,
-													row * amountOfTiles + boardOffset + amountOfTiles / 2, amountOfTiles - 6,
-														amountOfTiles - 6, seed[row][col], true);
+													row * amountOfTiles + boardOffset + amountOfTiles / 2, amountOfTiles,
+														amountOfTiles, seed[row][col], true);
 						
 
 						} 
+						
+						board[row][col].setTimer(-((board.length - col) - row) * 0.05f);
 						
 					
 						}
